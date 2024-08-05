@@ -28,7 +28,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
  
 
 
-Menu_Get_items "# Deploy_Chroot" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Deploy_Chroot.lib" "Deploy_Chroot:"
+Menu_Get_items "# Deploy_Chroot" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Deploy_Chroot_lib.sh" "Deploy_Chroot:"
 
 
 ############### Stack_TRACE_BUILDER ################
@@ -53,7 +53,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
  
 
 
-Menu_Get_items "# Deploy_openstack" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/CAST-Mnu-DeployService_openStack.lib" "Deploy_openstack:"
+Menu_Get_items "# Deploy_openstack" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/CAST-Mnu-DeployService_openStack_lib.sh" "Deploy_openstack:"
 
 
 ############### Stack_TRACE_BUILDER ################
@@ -79,7 +79,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
  
 
 
-Menu_Get_items "# PKG_installable_ok" "2" "${Base_Dir_Scripts_Lib}/build/compil/pkg_install.lib" "Deploy_builded_package:"
+Menu_Get_items "# PKG_installable_ok" "2" "${Base_Dir_Scripts_Lib}/build/compil/pkg_install_lib.sh" "Deploy_builded_package:"
 
 
 ############### Stack_TRACE_BUILDER ################

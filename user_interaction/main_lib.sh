@@ -24,7 +24,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# In_main_Menu" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/CAST-Mnu_Main.lib" "Main_Menu_:"
+Menu_Get_items "# In_main_Menu" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/CAST-Mnu_Main_lib.sh" "Main_Menu_:"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -49,7 +49,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# In_main_install_Menu" "2" "${Base_Dir_Scripts_Lib}/user_interaction/main.lib" "Install Packages :"
+Menu_Get_items "# In_main_install_Menu" "2" "${Base_Dir_Scripts_Lib}/user_interaction/main_lib.sh" "Install Packages :"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -72,7 +72,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# Install_pkg_type" "2" "${Base_Dir_Scripts_Lib}/user_interaction/main.lib" "Install Packages :"
+Menu_Get_items "# Install_pkg_type" "2" "${Base_Dir_Scripts_Lib}/user_interaction/main_lib.sh" "Install Packages :"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -95,7 +95,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# PKG_installable_ok" "2" "${Base_Dir_Scripts_Lib}/build/pkg_install.lib" "Menu install Package in Chroot :"
+Menu_Get_items "# PKG_installable_ok" "2" "${Base_Dir_Scripts_Lib}/build/pkg_install_lib.sh" "Menu install Package in Chroot :"
 
 
 ############### Stack_TRACE_BUILDR ################
@@ -119,7 +119,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# PKG_installable_ok" "2" "${Base_Dir_Scripts_Lib}/build/pkg_install.lib" "Menu install Package in System :"
+Menu_Get_items "# PKG_installable_ok" "2" "${Base_Dir_Scripts_Lib}/build/pkg_install_lib.sh" "Menu install Package in System :"
 
 
 ############### Stack_TRACE_BUILDER ################
@@ -218,7 +218,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# Sources_server_sub" "2" "${Base_Dir_Scripts_Lib}/user_interaction/main.lib" "Sources server Menu :"
+Menu_Get_items "# Sources_server_sub" "2" "${Base_Dir_Scripts_Lib}/user_interaction/main_lib.sh" "Sources_server_Menu :"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -241,7 +241,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# CVS_Launch_Menu" "2" "${Base_Dir_Scripts_Lib}/sources_server/cvs/cvs_menu.lib" "Menu cvs manager :"
+Menu_Get_items "# CVS_Launch_Menu" "2" "${Base_Dir_Scripts_Lib}/sources_server/cvs/cvs_menu_lib.sh" "Menu cvs manager :"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -264,7 +264,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# SVN_Launch_Menu" "2" "${Base_Dir_Scripts_Lib}/sources_server/svn/svn.lib" "Menu svn manager :"
+Menu_Get_items "# SVN_Launch_Menu" "2" "${Base_Dir_Scripts_Lib}/sources_server/svn/svn_lib.sh" "Menu svn manager :"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"

@@ -30,12 +30,13 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
  
 PS3='choice? '
-Base_Menu_get_Tag="${1}"
-Base_Level_Menu_Info="${2}"
-Base_file_to_parse_Menu="${3}"
-Base_Menu_Name="${4}"
+local Base_Menu_get_Tag="${1}"
+local Base_Level_Menu_Info="${2}"
+local Base_file_to_parse_Menu="${3}"
+local Base_Menu_Name="${4}"
 Selected_Menu_items=()
-declare -a Selected_Menu_items=(${Base_Menu_Name})
+Selected_Menu_items_index=()
+#declare -a Selected_Menu_items=()
 
 for Base_items_menu in $( cat ${Base_file_to_parse_Menu} | grep "${Base_Menu_get_Tag}" | awk -v toprt=${Base_Level_Menu_Info} '{ print $toprt }')
     do
@@ -45,20 +46,35 @@ for Base_items_menu in $( cat ${Base_file_to_parse_Menu} | grep "${Base_Menu_get
        	 ${Base_Menu_get_Tag}) MSG_DISPLAY "debug" "0" "Loop call find [ filtered call ]"
        	                       ;;
        	                    *) MSG_DISPLAY "debug" "0"  " Item  get from file  [ ${Base_items_menu}  ]  "
-                              Selected_Menu_items+=(${Base_items_menu})
-                              
+                              Selected_Menu_items_text=$(echo ${Base_items_menu} | sed -e 's/_/\ /g' )
+                              Selected_Menu_items_index+=("${Selected_Menu_items_text}")
+                              eval  Selected_Menu_items[\"${Selected_Menu_items_text}\"]=\"${Base_items_menu}\" 
                               ;;
        esac
 done
-
-
-#exit 
-Menu_Build ${Selected_Menu_items[@]}
+Selected_Menu_items_index+=("Back or exit")
+ 
+Menu_Build "${Base_Menu_Name}" ""  
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
 }
+
+
+function get_object_type ()
+{
+############ STACK_TRACE_BUILDER #####################
+Function_Name="${FUNCNAME[0]}"
+Function_PATH="${Function_PATH}/${Function_Name}"
+######################################################
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
+
+############### Stack_TRACE_BUILDER ################
+Function_PATH="$( dirname ${Function_PATH} )"
+####################################################
+}
+
 
 
 function Menu_Build
@@ -75,90 +91,84 @@ function Menu_Build
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-args=""
-value=""
-title=""
-prompt=""
+local title="${1}"
+local prompt="${2:-"Please select one item :"}"
+
+declare -A _Selected_Menu_items=()
+declare -A _Selected_Menu_items_index=()
 limit=""
-options=""
+options=()
 case_seq=""
-PS3=""
+PS3="${prompt}"
+  for key in "${!Selected_Menu_items[@]}"
+    do
+    _Selected_Menu_items["$key"]="${Selected_Menu_items[$key]}"
+  done
+   _Selected_Menu_items["Back or exit"]="back"
+  Selected_Menu_items=()
+
+for index in ${!Selected_Menu_items_index[@]}
+  do 
+    _Selected_Menu_items_index+=("${index}")
+done 
+_Selected_Menu_items_index+=("Back or exit")
 
 
-  args=("$@")
-  
- 
-  
-  #Elimine la partie entre crochets
-  args=$( echo  "$args[@]" | sed -e 's/[[][^]]*[]]//' -e 's/[[:blank:]]*$//' )
-  echo  "[$args]" | sed  -e 's/[_]/ /g'
 
-   
-  case $args in
-  CHANGE\ *)    args="${args#CHANGE }"
-                args="${args//[^=]*/}"  #Elimine la partie a droite de =
-                while true
-                     do
-                       echo "Read ${args} value"
-                       read ${args}
-                       eval value="\${$args}"
-                       if [ -z "${value}" ]
-                          then
-                              MSG_DISPLAY "info" "1" "ERROR : ${args} environment variable value [ Null ] "
-                              MSG_DISPLAY "Menu" "RETRY : type a new value of ${args}"
-                          else
-                              MSG_DISPLAY "info" "1" "OVERRIDE: ${args} environment. New value [${value}]"
-                              break
-                        fi
-		        done
-                ;;
-             *) clear
-                title="$(echo ${args[0]} | sed  -e 's/[_]/ /g')"
-                prompt="Pick a choice : "
-                #unset 'args[1]'
-                unset 'args[0]'
-                limit=$((${#args[@]}))
-                options=()
-                for i in $(seq ${limit[@]});
-                  do 
-                      options+=(${args[i]})
-                      
-                done 
-                case_seq=$( echo  $( echo \"${options[@]}\") | sed -e 's/ /\"|\"/g' )
-                while true
-                do 
-                  clear
-                  echo "${title}"
-                  PS3="${prompt}"
-                  eval "select opt in \"\${options[@]}\" \"back\";
-                  do
-                    case \"\${opt}\" in
-                          ${case_seq}) \${opt};
-                                    break ;
-                                    ;;
-                    \"back\"|\"exit\") echo \"You picked \${opt}, option out\";
-                                    return ;
-                                    ;;
-                                    *)  echo \"You picked invalid \${opt} choice\"
-                        ;;
-                     esac; 
-      done"
-                done 
-                ;;
-  esac
-############### Stack_TRACE_BUILDER ################
-Function_PATH="$( dirname ${Function_PATH} )"
-####################################################
-}
+ # case_seq=\"$( echo  ${Selected_Menu_items[@]} | sed -e 's/ /\"|\"/g' )\"
+  case_seq="$( echo  ${_Selected_Menu_items[@]} | sed -e 's/ /|/g' )"
+  while true 
+  do 
+    clear
+    echo  "[${title}]" | sed  -e 's/[_]/ /g'
+    select action in "${Selected_Menu_items_index[@]}" 
+      do
+        local execute=${_Selected_Menu_items[${action}]}
+        case "${execute}" in
+          CHANGE\ *)    execute="${execute#CHANGE }"
+                  execute="${execute//[^=]*/}"  #Elimine la partie a droite de =
+                  while true
+                      do
+                        echo "Read ${execute} value"
+                        read ${execute}
+                        eval value="\${$execute}"
+                        if [ -z "${value}" ]
+                            then
+                                MSG_DISPLAY "info" "1" "ERROR : ${execute} environment variable value [ Null ] "
+                                MSG_DISPLAY "Menu" "RETRY : type a new value of ${execute}"
+                            else
+                                MSG_DISPLAY "info" "1" "OVERRIDE: ${execute} environment. New value [${value}]"
+                                break
+                          fi
+                  done
+                  ;;
+          exit) exit 0 
+          ;; 
+          back) echo "exiting menu" 
+               return ;
+          ;; 
+          *) for key in "${!_Selected_Menu_items[@]}"
+              do
+                if [[ "${_Selected_Menu_items[$key]}" == "${execute}" ]]
+                 then
+                    found=true
+                    break
+                fi
+            done
 
-function ecMenu
-{
-############ STACK_TRACE_BUILDER #####################
-Function_Name="${FUNCNAME[0]}"
-Function_PATH="${Function_PATH}/${Function_Name}"
-######################################################
- 
-Mnu=""
+              # Retourner true ou false
+              if [[ ${found} = "true" ]]
+              then
+                  ${execute}
+                  break
+              else
+                  echo "value not in range."
+              fi
+          ;;
+        esac
+    done 
+ done
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################

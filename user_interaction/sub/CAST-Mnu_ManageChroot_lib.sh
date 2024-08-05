@@ -26,7 +26,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
 
 
 
-Menu_Get_items "# Configure_ChRoot_Size" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Configure_Chroot_Size.lib" "Configure_ChRoot_Size:"
+Menu_Get_items "# Configure_ChRoot_Size" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Configure_Chroot_Size_lib.sh" "Configure_ChRoot_Size:"
 
 
 ############### Stack_TRACE_BUILDER ################
@@ -53,7 +53,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
 
 
 
-Menu_Get_items "# Configure_ChRoot_Size" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Configure_Chroot_Size.lib" "Configure_ChRoot_Size:"
+Menu_Get_items "# Configure_ChRoot_Size" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Configure_Chroot_Size_lib.sh" "Configure_ChRoot_Size:"
 
 
 ############### Stack_TRACE_BUILDER ################

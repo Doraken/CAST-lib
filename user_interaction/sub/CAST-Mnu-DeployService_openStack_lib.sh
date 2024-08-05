@@ -28,7 +28,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
  
 
 
-Menu_Get_items "# Deploy_Chroot" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Deploy_Chroot.lib" "Deploy_Chroot:"
+Menu_Get_items "# Deploy_Chroot" "2" "${Base_Dir_Scripts_Lib}/user_interaction/sub/Deploy_Chroot_lib.sh" "Deploy_Chroot:"
 
 
 ############### Stack_TRACE_BUILDER ################

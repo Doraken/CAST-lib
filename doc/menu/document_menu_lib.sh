@@ -18,7 +18,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-Menu_Get_items "# DOC_Base_MENU_L1" "2" "${Base_Dir_Scripts_Lib}/doc/menu/document_menu.lib" "Autodoc menu :"
+Menu_Get_items "# DOC_Base_MENU_L1" "2" "${Base_Dir_Scripts_Lib}/doc/menu/document_menu_lib.sh" "Autodoc_menu_:"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
