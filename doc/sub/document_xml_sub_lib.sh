@@ -22,7 +22,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
 
 for Libraries_geted in $( cat ${Base_Catalog_function} | awk -F ";" '{ print $2 }' | sort -u )
       do
-        Document_doc_xml="${Base_Dir_Scripts_Data_doc_xml}/$( echo  ${Libraries_geted} | awk -F "/" '{ print $NF}' | awk -F "." '{ print $1".xml"}' )"
+        Document_doc_xml="${BDir_Data_doc_xml}/$( echo  ${Libraries_geted} | awk -F "/" '{ print $NF}' | awk -F "." '{ print $1".xml"}' )"
         New_Lib_Name="$(echo ${Libraries_geted} | awk -F "/" '{ print $NF}')" > ${Document_doc_xml}
         echo  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"                >> ${Document_doc_xml}
         echo  "<?xml-stylesheet type=\"text/xsl\" href=\"autodoc.xsl\"?>" >> ${Document_doc_xml}

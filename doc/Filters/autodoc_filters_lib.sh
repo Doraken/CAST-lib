@@ -84,31 +84,31 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-egrep -v ";Item;;$"     ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;$"      ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;;$"     ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;.$"     ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;###$"   ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;\=$"    ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;\[$"    ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;\]$"    ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;\*$"    ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;:$"     ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;eval$"  ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;if$"    ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;then$"  ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;else$"  ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;fi$"    ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;for$"   ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;do$"    ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;done$"  ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;while$" ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;case$"  ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;export$"  ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;############$"     ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
-egrep -v ";Item;######################################################$"     ${Base_Catalog_function_TMP_dep} > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;;$"     ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;$"      ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;;$"     ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;.$"     ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;###$"   ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;\=$"    ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;\[$"    ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;\]$"    ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;\*$"    ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;:$"     ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;eval$"  ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;if$"    ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;then$"  ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;else$"  ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;fi$"    ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;for$"   ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;do$"    ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;done$"  ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;while$" ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;case$"  ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;export$"  ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;############$"     ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+egrep -v ";Item;######################################################$"     ${Base_Catalog_function_TMP_dep} > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
 
-sort -u  ${Base_Catalog_function_TMP_dep}                > ${Base_Dir_Scripts_Tmp}/filter_cat.tmp && cat    ${Base_Dir_Scripts_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
+sort -u  ${Base_Catalog_function_TMP_dep}                > ${BDir_Tmp}/filter_cat.tmp && cat    ${BDir_Tmp}/filter_cat.tmp  > ${Base_Catalog_function_TMP_dep}
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################

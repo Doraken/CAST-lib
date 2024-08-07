@@ -225,13 +225,13 @@ echo  ${Catalogs_lst}
 
 
 
-Tmp_file_cat_refine="${Base_Dir_Scripts_Tmp}/${EXTERNAL_randomized_var}_func_dep_cat.cat"
+Tmp_file_cat_refine="${BDir_Tmp}/${EXTERNAL_randomized_var}_func_dep_cat.cat"
 cat ${Base_Catalog_function_depend} | sort -u > ${Tmp_file_cat_refine}
 cat ${Tmp_file_cat_refine} > ${Base_Catalog_function_depend}
 
 Get_system_random_,number
 
-Tmp_file_cat_refine="${Base_Dir_Scripts_Tmp}/${EXTERNAL_randomized_var}_func_doc_cat.cat"
+Tmp_file_cat_refine="${BDir_Tmp}/${EXTERNAL_randomized_var}_func_doc_cat.cat"
 cat ${Base_Catalog_function_docs} | sort -u > ${Tmp_file_cat_refine}
 cat ${Tmp_file_cat_refine} > ${Base_Catalog_function_docs}
 

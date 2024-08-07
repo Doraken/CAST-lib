@@ -163,7 +163,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 Get_system_random_,number
-TMP_file_cat=${Base_Dir_Scripts_Tmp}/${EXTERNAL_randomized_var}_spec_cat.cat
+TMP_file_cat=${BDir_Tmp}/${EXTERNAL_randomized_var}_spec_cat.cat
 date >> ${TMP_file_cat}
 iterate_count="0"
 for CHROOT_file in $(cat ${catalogue_used}) 

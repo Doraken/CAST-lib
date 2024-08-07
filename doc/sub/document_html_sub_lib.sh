@@ -27,7 +27,7 @@ for New_Lib_Name in $(for Tvar in $( cat ../data/catalogue/function.cat | awk -F
       for Function_geted in $( cat ${Base_Catalog_function} | grep ${New_Lib_Name} | awk -F ";" '{ print $4 }' )
           do
              DPFMP_Base_File_name="$( echo  ${Function_geted} | awk -F "." '{ print $1 }' )"
-             Document_doc_man="${Base_Dir_Scripts_Data_doc_man_html}/${DPFMP_Base_File_name}.html"
+             Document_doc_man="${BDir_Data_doc_man_html}/${DPFMP_Base_File_name}.html"
              echo  "<HTML>"                                                                                   >> ${Document_doc_man}
              echo  "    <BODY>"                                                                               >> ${Document_doc_man}
              echo  "       <PRE><!-- Manpage converted by pcd autodoc by Arnaud Crampet  --></PRE>"           >> ${Document_doc_man}

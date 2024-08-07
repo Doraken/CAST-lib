@@ -12,8 +12,8 @@ Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 
-Set_new_directory "${Base_Dir_Scripts_GIT_devops_azure}/${infra_organization}" 
-Set_new_directory "${Base_Dir_Scripts_GIT_devops_azure}/${application_organization}" 
+Set_new_directory "${BDir_Data_Plateformes_Infrastruture_Azure}/${infra_organization}" 
+Set_new_directory "${BDir_Data_Plateformes_Infrastruture_Azure}/${application_organization}" 
 
 get_azure_devops_credential
 
@@ -114,7 +114,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
     do
         MSG_DISPLAY "info" "0" "    Project ${project}"
 
-        Set_new_directory "${Base_Dir_Scripts_GIT_devops_azure}/${organization}/${project}"
+        Set_new_directory "${BDir_Data_Plateformes_Infrastruture_Azure}/${organization}/${project}"
         # Get the list of repositories for the current project
         repo_list=$(az repos list --project "${project}" --query "[].name" -o tsv)
         
@@ -129,7 +129,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
             for repo in ${repo_list}
             do
                 MSG_DISPLAY "info" "0" " Repository: ${repo}"
-                Do_get_git_clone "git@${GIT_SSH_URL}:v3/${organization}/${project}" " ${Base_Dir_Scripts_GIT_devops_azure}/${organization}/${project}" "${repo}"
+                Do_get_git_clone "git@${GIT_SSH_URL}:v3/${organization}/${project}" " ${BDir_Data_Plateformes_Infrastruture_Azure}/${organization}/${project}" "${repo}"
             done
         fi
     done

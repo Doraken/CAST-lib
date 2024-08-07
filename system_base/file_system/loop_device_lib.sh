@@ -53,7 +53,7 @@ MSG_DISPLAY "info" "1" "Creating links between loop and files  : [ Started ] "
 last_att_loop=$(cat ${Base_Chroot_catalog_file} | grep last_loop | awk '{ print $2 }')
 New_att_loop=$(expr ${last_att_loop} + 1) 
 echo "${Chroot_Name}| created on $(date) | | |D|" >> ${Base_Chroot_catalog_file}
-echo " echo \" regenerating configuration loop device for ${Chroot_Name}\"" >> ${Base_Dir_Scripts_Tmp_Auto_Lib}/Loop_configuration.ksh
+echo " echo \" regenerating configuration loop device for ${Chroot_Name}\"" >> ${BDir_Tmp_Auto_Lib}/Loop_configuration.ksh
 for Loops_to_map in ${Loops_File_Liste}
 do 
    echo "losetup /dev/loop${New_att_loop} ${Loops_to_map}"

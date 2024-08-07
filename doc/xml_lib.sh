@@ -31,7 +31,7 @@ done
 if [ ${XML_Conf_init} = "0" ]
    then 
        MSG_DISPLAY "debug" "0" "XML base definition file Sourced [ Sourcing ]"
-   	   Do_file_sourcing_control "xml_base_def.def" "${Base_Dir_Scripts_Data_Xml_DEF}"
+   	   Do_file_sourcing_control "xml_base_def.def" "${BDir_Data_Xml_DEF}"
        MSG_DISPLAY "debug" "0" "XML base definition file Sourced [ OK ]"
        XML_Conf_init="1"
    else

@@ -21,7 +21,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
 
 for Libraries_geted in $( cat ${Base_Catalog_function} | awk -F ";" '{ print $2 }' | sort -u )
       do
-        Document_doc_txt="${Base_Dir_Scripts_Data_doc_txt}/$( echo  ${Libraries_geted} | awk -F "/" '{ print $NF}' | awk -F "." '{ print $1".txt"}' )"
+        Document_doc_txt="${BDir_Data_doc_txt}/$( echo  ${Libraries_geted} | awk -F "/" '{ print $NF}' | awk -F "." '{ print $1".txt"}' )"
         New_Lib_Name="$(echo ${Libraries_geted} | awk -F "/" '{ print $NF}')"
         echo  " Used lib : [ ${New_Lib_Name}   ] "  > ${Document_doc_txt}
         Document_Print_function_txt
