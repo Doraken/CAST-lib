@@ -14,7 +14,7 @@ function SQL_Server_Connect
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 INTERNAM_ITERAT_SQL_CONNECT="0"
 
@@ -50,7 +50,7 @@ function SQL_Server_Disconnect
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 case ${EXTERNAL_SQL_IS_CONNECTED} in
      OnLine) MSG_DISPLAY "Debug" "6" "SQL Session id ${EXTERNAL_SQL_session_ID} status : [ Connected ] "
              MSG_DISPLAY "Debug" "6" "Current SQL FIFO file : [ ${EXTERNAL_SQL_current_FIFO_file} ] "
@@ -78,7 +78,7 @@ function SQL_DATABASE_connect
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 DATABASE_To_connect="${1}"
 
 echo  " CONNECT ${DATABASE_To_connect}; " >> ${EXTERNAL_SQL_current_FIFO_file}
@@ -94,7 +94,7 @@ function SQL_CONNECT_CHECK
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 if [ ${EXTERNAL_SQL_IS_CONNECTED} = "OnLine" ]
    then
@@ -123,7 +123,7 @@ function SQL_GET_PKG_liste
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 Get_system_random_,number
 INTERNAL_ID_READ_ITEM="#-#-${EXTERNAL_randomized_var}"
 
@@ -212,7 +212,7 @@ function SQL_GENERATE_PROCS_OM_PKG_KEY_CATALOGUE
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 echo  "DELIMITER \$\$"
 echo  "DROP PROCEDURE IF EXISTS \`${Base_Database_Default}\`.\`${PROC_NAME}\`\$\$"
@@ -406,7 +406,7 @@ function SQL_Run_ALL_PROCS_GEN_SUB
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 print "CALL \`PKG_proc_from_OM_ContentAdaptation\`( '${INTERNAL_GO}','${INTERNAL_RO}','${INTERNAL_CO}','${INTERNAL_PO}','${INTERNAL_PFNAME}','${INTERNAL_SERVER_NAME}','${INTERNAL_INST1}','${INTERNAL_INST2}','${INTERNAL_INST3}','${INTERNAL_STAGE}')"
 
 
@@ -422,7 +422,7 @@ function SQL_Run_ALL_PROCS
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 SQL_Run_ALL_PROCS_GEN_SUB1 > ${INTERNAL_IN_FILE}_RUN_PROCS.tmp
 ${Base_mysql_bin_proc_use} < ${INTERNAL_IN_FILE}_RUN_PROCS.tmp >> ${INTERNAL_OUT_FILE}_TUN_PROCS.tmp
@@ -439,7 +439,7 @@ function SQL_GET_ALL_INFO_FOR_PROCS
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 INTERNAL_IN_FILE_GET_ALL="${Base_Database_TempDir}/GET_ALL_tmp_in.sql"
 INTERNAL_OUT_FILE_GET_ALL="${Base_Database_TempDir}/GET_ALL_outfile.file"

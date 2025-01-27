@@ -5,7 +5,7 @@
 script_name=$(basename "${0}" .sh)
 
 # Sourcing core ressource file 
-. ./lib/core.sh 
+. ../../lib/core.sh 
 if [[ ${CoreState} = "OK" ]]
    then 
        echo "core scripting loaded"

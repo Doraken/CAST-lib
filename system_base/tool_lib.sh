@@ -26,7 +26,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
 
 MSG_DISPLAY "check" "0" "System logger status :"
 
-Global_Tool_Logger_bin="$(wich logger 2>> ${Base_Dir_Scripts_LOG}/Tool.log )"
+Global_Tool_Logger_bin="$(which logger 2>> ${Base_Dir_Scripts_LOG}/Tool.log )"
 if [ -z ${Global_Tool_Logger_bin} ]
    then
    	   Global_Tool_Logger_Status="DISABLED"      # EXEC_Global_SET_control_sanity
@@ -232,7 +232,7 @@ Function_PATH="$( dirname ${Function_PATH} )"
 }
 
 
-function Get_tool_tail_status                   # EXEC_Global_SET
+function Get_tool_tail_status ()                   # EXEC_Global_SET
 {
 #|# Var to set  : None
 #|#

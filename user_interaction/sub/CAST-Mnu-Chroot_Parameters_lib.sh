@@ -24,7 +24,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-. ${BDir_Data_Def}/Chroots/Small.ChrtDef
+. ${BDir_Data_Definition}/Chroots/Small.ChrtDef
 Banner
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -47,7 +47,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-. ${BDir_Data_Def}/Chroots/Medium.ChrtDef
+. ${BDir_Data_Definition}/Chroots/Medium.ChrtDef
 Banner
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -70,7 +70,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
  
 
-. ${BDir_Data_Def}/Chroots/Big.ChrtDef
+. ${BDir_Data_Definition}/Chroots/Big.ChrtDef
 
 Banner
 ############### Stack_TRACE_BUILDER ################

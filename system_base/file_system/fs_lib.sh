@@ -336,6 +336,107 @@ Function_PATH="$( dirname ${Function_PATH} )"
 	
 }
 
+function FS_Get_All_Names_and_Mounts_Array ()
+{
+#|# Var utilisée : 
+#|#                FS_Info_Array : tableau contenant les noms des file systems et leurs points de montage
+#|# Usage : 
+#|#              FS_Get_All_Names_and_Mounts_Array
+############ STACK_TRACE_BUILDER #####################
+Function_Name="${FUNCNAME[0]}"
+Function_PATH="${Function_PATH}/${Function_Name}"
+######################################################
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
+
+# Purge du tableau pour éviter les duplications si la fonction est appelée plusieurs fois
+unset FS_Info_Array
+declare -a FS_Info_Array
+
+# Récupération des informations sur tous les systèmes de fichiers
+while read -r line; do
+    FS_Name=$(echo $line | awk '{print $1}')
+    FS_Mount=$(echo $line | awk '{print $6}')
+    FS_Info_Array+=("${FS_Name}:${FS_Mount}")
+done < <(df -P | grep '^/dev/')
+
+# Affichage des informations récupérées pour débogage
+MSG_DISPLAY "info" "0" "All file system information stored in array"
+
+############### Stack_TRACE_BUILDER ################
+Function_PATH="$( dirname ${Function_PATH} )"
+####################################################
+}
+
+
+function FS_Get_Occupation_Rates_Array ()
+{
+#|# Var utilisée : 
+#|#                FS_Occupation_Array : tableau contenant les taux d'occupation des file systems
+#|# Usage : 
+#|#              FS_Get_Occupation_Rates_Array
+############ STACK_TRACE_BUILDER #####################
+Function_Name="${FUNCNAME[0]}"
+Function_PATH="${Function_PATH}/${Function_Name}"
+######################################################
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
+
+# Purge du tableau en le réinitialisant à un tableau vide
+FS_Occupation_Array=()
+
+# Récupération des informations sur tous les systèmes de fichiers
+while read -r line; do
+    FS_Name=$(echo $line | awk '{print $1}')
+    FS_Usage=$(echo $line | awk '{print $5}' | sed 's/%//')
+    FS_Occupation_Array+=("${FS_Name}:${FS_Usage}%")
+done < <(df -P | grep '^/dev/')
+
+# Affichage des informations récupérées pour débogage
+MSG_DISPLAY "info" "0" "Occupation rates for all file systems stored in array"
+
+############### Stack_TRACE_BUILDER ################
+Function_PATH="$( dirname ${Function_PATH} )"
+####################################################
+}
+
+
+function FS_Display_Info_and_Occupation () 
+{
+#|# Usage : 
+#|#              FS_Display_Info_and_Occupation
+############ STACK_TRACE_BUILDER #####################
+Function_Name="${FUNCNAME[0]}"
+Function_PATH="${Function_PATH}/${Function_Name}"
+######################################################
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
+
+# Récupérer les infos des file systems
+FS_Get_All_Names_and_Mounts_Array
+FS_Get_Occupation_Rates_Array
+
+# Afficher les informations avec une jauge d'occupation
+printf "%-20s %-20s %-20s\n" "File System" "Mount Point" "Occupation"
+printf "%-20s %-20s %-20s\n" "--------------------" "--------------------" "--------------------"
+
+for items in "${!FS_Info_Array[@]}"; do
+    FS_Info="${FS_Info_Array[$items]}"
+    FS_Name=$(echo $FS_Info | awk -F':' '{print $1}')
+    FS_Mount=$(echo $FS_Info | awk -F':' '{print $2}')
+    
+    FS_Occupation="${FS_Occupation_Array[$items]}"
+    FS_Usage=$(echo $FS_Occupation | awk -F':' '{print $2}' | sed 's/%//')
+
+    # Générer la jauge d'occupation
+    Gauge=$(printf "%-${FS_Usage}s" "#" | sed 's/ /#/g')
+    
+    # Affichage formaté
+    printf "%-20s %-20s [%-20s] %3s%%\n" "$FS_Name" "$FS_Mount" "$Gauge" "$FS_Usage"
+done
+
+############### Stack_TRACE_BUILDER ################
+Function_PATH="$( dirname ${Function_PATH} )"
+####################################################
+}
+
 
 
 # Sourcing control variable 

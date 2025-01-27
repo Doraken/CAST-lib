@@ -3,7 +3,8 @@
 # Date : 28/06/2024
 # generic azure devops tool from CAST 
 
-function do_create_route_table() {
+function do_create_route_table() 
+{
   #|#  * create_route_table
   #|#  * @description Creates a route table in the specified resource group.
   #|#  * @param route_table_name The name of the route table.
@@ -57,85 +58,6 @@ Empty_Var_Control "${resource_group}" "resource_group" "2"
 Empty_Var_Control "${property_name}" "property_name" "2"
 Empty_Var_Control "${property_value}" "property_value" "2"
 
-
-az network route-table route create --resource-group rg-tool-prod-se-frc1 --route-table-name rt-glb-prod-ne-frc02 --name rt-glb-hprd-net-frc01 --next-hop-type VnetLocal --address-prefix 10.10.0.0/23
-az network route-table route create --resource-group rg-tool-prod-se-frc1 --route-table-name rt-glb-prod-ne-frc02 --name rt-glb-hprd-net-frc02 --next-hop-type VnetLocal --address-prefix 10.10.2.0/26
-az network route-table route create --resource-group rg-tool-prod-se-frc1 --route-table-name rt-glb-prod-ne-frc02 --name rt-glb-hprd-net-frc03 --next-hop-type VnetLocal --address-prefix 10.10.2.64/26
-az network route-table route create --resource-group rg-tool-prod-se-frc1 --route-table-name rt-glb-prod-ne-frc02 --name rt-glb-hprd-net-frc04 --next-hop-type VnetLocal --address-prefix 10.10.2.128/26
-az network route-table route create --resource-group rg-tool-prod-se-frc1 --route-table-name rt-glb-prod-ne-frc02 --name rt-glb-hprd-net-frc05 --next-hop-type VnetLocal --address-prefix 10.10.2.192/26
-
-az network route-table route create --resource-group MyResourceGroup --route-table-name MyRouteTable --name MyRoute --next-hop-type VirtualAppliance --address-prefix 10.1.0.0/16 --next-hop-ip-address 10.0.0.4
-
-
-
-az network route-table route create --resource-group rg-tool-prod-se-frc1 --route-table-name rt-glb-prod-ne-frc02 --name rt-glb-hprd-net-frc05 --next-hop-type VnetLocal --address-prefix 10.10.2.192/26
-
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc01 --address-prefix "10.2.0.0/16" --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-
-http://52.143.184.250/
-
-rt-hprd-prod-ne-frc-02 
-
-az network route-table route delete --route-table-name "myRouteTable" --resource-group "myResourceGroup" --name "myRoute1"
-
-
-
-
-
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc01 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc02 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc03 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc04 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc05 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc06 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc07 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc08 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc09 
-az network route-table route delete --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc10 
-
-
-
-
-
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc01 --next-hop-type VnetLocal          --address-prefix 10.0.2.0/24       	
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc02 --address-prefix 10.4.50.0/28      --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4 
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc03 --address-prefix 10.4.4.0/24       --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc04 --address-prefix 10.10.2.192/26    --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc05 --address-prefix 10.4.0.0/22       --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc06 --address-prefix 10.0.3.0/24       --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc07 --address-prefix 10.0.1.0/24       --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc08 --address-prefix 10.4.2.0/24       --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc09 --address-prefix 10.4.1.0/24       --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc10 --address-prefix 168.63.129.16/32  --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-
-
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc01 --next-hop-type VnetLocal          --address-prefix 10.0.2.0/24       	
-route add -p 10.4.50.0/28    mask 255.255.255.0 10.10.2.65 if 15
-route add -p 10.4.4.0/24     mask 255.255.255.0 10.10.2.65 if 15
-route add -p 10.4.0.0/22     mask 255.255.255.0 10.10.2.65 if 15
-route add -p 10.0.3.0/24     mask 255.255.255.0 10.10.2.65 if 15
-route add -p 10.0.1.0/24     mask 255.255.255.0 10.10.2.65 if 15
-route add -p 10.4.2.0/24     mask 255.255.255.0 10.10.2.65 if 15
-route add -p 10.4.1.0/24     mask 255.255.255.0 10.10.2.65 if 15
-route add -p 10.0.2.0/24    mask 255.255.255.0 10.10.2.65 if 15
-
-
-
-route delete 10.0.2.0/24    mask 255.255.255.0 10.10.2.64 
-route delete 10.4.50.0/28    mask 255.255.255.0 10.10.2.64 
-route delete 10.4.4.0/24     mask 255.255.255.0 10.10.2.64
-route delete 10.10.2.192/26  mask 255.255.255.0 10.10.2.64
-route delete 10.4.0.0/22     mask 255.255.255.0 10.10.2.64
-route delete 10.0.3.0/24     mask 255.255.255.0 10.10.2.64
-route delete 10.0.1.0/24     mask 255.255.255.0 10.10.2.64
-route delete 10.4.2.0/24     mask 255.255.255.0 10.10.2.64
-route delete 10.4.1.0/24     mask 255.255.255.0 10.10.2.64
-
-az network route-table route create --route-table-name rt-hprd-prod-ne-frc-02 --resource-group rg-lzap-hprd-frc01 --name rt-glb-hprd-net-frc10 --address-prefix 168.63.129.16/32  --next-hop-type "VirtualAppliance" --next-hop-ip-address 10.0.2.4
-
-route add 10.0.2.0 mask 255.255.255.0 10.10.2.64
-	
-10.0.2.4
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"

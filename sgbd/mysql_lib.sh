@@ -19,7 +19,7 @@ function Do_mysql_init
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 ${Base_Mysql_Install_PATH}/bin/
 
@@ -38,7 +38,7 @@ function Do_mysql_start
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 
 echo ""
@@ -58,7 +58,7 @@ function Do_mysql_stop
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 
 echo ""

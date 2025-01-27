@@ -14,7 +14,8 @@
 
 
 # Function to set the GitHub API token
-function Set_GitHub_Token {
+function Set_GitHub_Token () 
+{
     #|# GITHUB_API_TOKEN: Personal access token for GitHub API authentication
     #|# ${1}: Use this var to set [ GITHUB_API_TOKEN ]
     #|#
@@ -31,7 +32,8 @@ function Set_GitHub_Token {
 }
 
 # Function to create a GitHub repository
-function Do_GitHub_create_repo {
+function Do_GitHub_create_repo () 
+{
     #|# GITHUB_REPO_NAME: Name of the repository to be created
     #|# GITHUB_REPO_DESC: Description of the repository (optional)
     #|# GITHUB_REPO_PRIVATE: Privacy setting of the repository (true for private, false for public)
@@ -73,7 +75,8 @@ EOF
 }
 
 # Function to handle errors
-function Manage_GitHub_Error {
+function Manage_GitHub_Error () 
+{
     #|# ERROR_MESSAGE: Error message to display
     #|# ${1}: Use this var to set [ ERROR_MESSAGE ]
     #|#

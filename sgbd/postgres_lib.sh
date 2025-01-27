@@ -23,7 +23,7 @@ function Do_postgres_init
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 MSG_DISPLAY "Info" "1" "POSTRESG STATUS : [ INIT ] "
 MSG_DISPLAY "Config" "1" "Postgres Install PATH    : [ ${BASE_Postgres_Install_PATH}  ]"
 MSG_DISPLAY "Config" "1" "Postgres owner username  : [ ${BASE_Postgres_USER}  ]"
@@ -54,7 +54,7 @@ function Do_postgres_start
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
 
 echo ""
@@ -74,7 +74,7 @@ function Do_postgres_stop
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-MSG_DISPLAY "Debug" "8" "Current Stack : [ ${Function_PATH} ] " 
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 echo ""
 
 ############### Stack_TRACE_BUILDER ################

@@ -324,6 +324,7 @@ case $1 in
 esac
 
 echo "${COLOR_ATTR}"
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -381,6 +382,7 @@ case ${Type_Font_Def} in
 esac
 
 printf "\033[%sm" "${FONT_ATTR}"
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -406,6 +408,7 @@ do
     printf "\n"
 done
 FONT_set_Font default
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -423,6 +426,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 FONT_set_Font default
 FONT_set_Font foreground White
 FONT_set_Font background Black
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -441,6 +445,7 @@ FONT_set_Font default
 FONT_set_Font bright
 FONT_set_Font foreground White
 FONT_set_Font background Red
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -459,6 +464,7 @@ FONT_set_Font default
 FONT_set_Font foreground Black
 FONT_set_Font background Yellow
 FONT_set_Font blink
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -475,6 +481,7 @@ FONT_set_Font default
 FONT_set_Font foreground Green
 FONT_set_Font background Black
 FONT_set_Font blink
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -493,6 +500,7 @@ FONT_set_Font default
 FONT_set_Font bright
 FONT_set_Font foreground White
 FONT_set_Font background Green
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -511,6 +519,7 @@ FONT_set_Font default
 FONT_set_Font bright
 FONT_set_Font foreground Green
 FONT_set_Font background Black
+
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
@@ -544,6 +553,9 @@ Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
     Set_terminal_properties
+    #init catalogue files vars 
+    Set_catalog_files
+    
     #init_directory
     Get_system_tunning
     SANITY_CHECK_Base_env_directory_check

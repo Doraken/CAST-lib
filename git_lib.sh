@@ -20,9 +20,9 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
        git pull 
        cd ..
     else 
-      git clone git@${GIT_SSH_URL}:v3/${GIT_GLB_ORGANISATION}/${GIT_GLB_PROJECT}/${repo}
+      git clone GIT_BASE_SSH_URL/${GIT_BASE_ORGA_NAME}/${GIT_GLB_PROJECT}/${repo}
       cd ${repo}
-      git clone git@${GIT_SSH_URL}:v3/${GIT_GLB_ORGANISATION}/${GIT_GLB_PROJECT}/lib
+      git clone GIT_BASE_SSH_URL/${GIT_BASE_ORGA_NAME}/${GIT_GLB_PROJECT}/lib
       cd ..
 fi
 ############### Stack_TRACE_BUILDER ################
@@ -43,7 +43,7 @@ if [ ${runned} -gt 1 ]
        MSG_DISPLAY "EdEMessage" "1" ""
        exit 2 
    else 
-        git clone git@${GIT_SSH_URL}:v3/${GIT_GLB_ORGANISATION}/${GIT_GLB_PROJECT}/lib
+        git clone GIT_BASE_SSH_URL/${GIT_BASE_ORGA_NAME}/${GIT_GLB_PROJECT}/lib
         MSG_DISPLAY "check" "0" "checking git sub root directory "
         if [ ! -d ./RGRoot ] 
           then 
@@ -83,10 +83,10 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
        else 
             oldpath="$( pwd )"
             MSG_DISPLAY "check" "0" "checking git sub root directory ${_git_dir} :   "
-            git clone git@${GIT_SSH_URL}:v3/${GIT_GLB_ORGANISATION}/${GIT_GLB_PROJECT}/${_git_dir}
+            git clone GIT_BASE_SSH_URL/${GIT_BASE_ORGA_NAME}/${GIT_GLB_PROJECT}/${_git_dir}
             cd ${_git_dir}
             MSG_DISPLAY "check" "0" "checking git sub root directory ${_git_dir}/lib :   "
-            git clone git@${GIT_SSH_URL}:v3/${GIT_GLB_ORGANISATION}/${GIT_GLB_PROJECT}/lib
+            git clone GIT_BASE_SSH_URL/${GIT_BASE_ORGA_NAME}/${GIT_GLB_PROJECT}/lib
             cd  ${oldpath}
     fi 
 ############### Stack_TRACE_BUILDER ################
@@ -108,7 +108,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
        cd  ${_dir} 
        Do_git_init_gen
        git_az_devops_repo_create ${Rgname}
-       git remote add origin git@${GIT_SSH_URL}:v3/${GIT_GLB_ORGANISATION}/${GIT_GLB_PROJECT}/${Rgname}
+       git remote add origin GIT_BASE_SSH_URL/${GIT_BASE_ORGA_NAME}/${GIT_GLB_PROJECT}/${Rgname}
        git push --set-upstream origin main  --force       2>> ${logfile} 
        cd ${_pwd}
   fi

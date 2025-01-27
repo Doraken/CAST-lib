@@ -11,6 +11,7 @@ function azure_devops_init ()
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
 
 Set_new_directory "${BDir_Data_Plateformes_Infrastruture_Azure}/${infra_organization}" 
 Set_new_directory "${BDir_Data_Plateformes_Infrastruture_Azure}/${application_organization}" 
@@ -29,6 +30,8 @@ function get_azure_devops_credential ()
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
+MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ] "
+
 if [[ ! ${init_azure_devops} -ge 1 ]]
    then 
        MSG_DISPLAY "check" "0" "Checking credential store"
@@ -98,15 +101,22 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
     
-    local organization="${1}"
+    local GIT_BASE_ORGA_NAME="${1}"
     local project_list
     local repo_list
 
+    
+    
+
     # Set the organization for Azure DevOps
-    az devops configure --defaults organization=https://dev.azure.com/${organization}
+    az devops configure --defaults organization=https://${GIT_BASE_DNS}/${GIT_BASE_ORGA_NAME}
+
 
     # Get a list of all projects in the organization
     project_list=$(az devops project list --query "value[].name" -o tsv)
+
+
+
 
     MSG_DISPLAY "info" "0" "List of projects in the Azure DevOps subscription:"
     # Loop through each project and get the list of repositories
@@ -114,7 +124,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
     do
         MSG_DISPLAY "info" "0" "    Project ${project}"
 
-        Set_new_directory "${BDir_Data_Plateformes_Infrastruture_Azure}/${organization}/${project}"
+        Set_new_directory "${BDir_Data_Plateformes_Infrastruture_Azure}/${GIT_BASE_ORGA_NAME}/${project}"
         # Get the list of repositories for the current project
         repo_list=$(az repos list --project "${project}" --query "[].name" -o tsv)
         
@@ -129,7 +139,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
             for repo in ${repo_list}
             do
                 MSG_DISPLAY "info" "0" " Repository: ${repo}"
-                Do_get_git_clone "git@${GIT_SSH_URL}:v3/${organization}/${project}" " ${BDir_Data_Plateformes_Infrastruture_Azure}/${organization}/${project}" "${repo}"
+                Do_get_git_clone "GIT_BASE_SSH_URL/${GIT_BASE_ORGA_NAME}/${project}" " ${BDir_Data_Plateformes_Infrastruture_Azure}/${GIT_BASE_ORGA_NAME}/${project}" "${repo}"
             done
         fi
     done
