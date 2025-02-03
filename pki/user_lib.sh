@@ -36,13 +36,13 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function
   _sub_01_G_Create_user_cert
 
   MSG_DISPLAY "Info" "1" "Checking key for ${_userFQDN}" 
-  File_Ctrl_Exist "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/${_userFQDN}/private/${_userFQDN}.key" "Dont_Create_file" "0" "_sub_01_F_Create_user_key" ""
+  File_Ctrl_Exist "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/${_userFQDN}/private/${_userFQDN}.key" "Dont_Create_file" "0" "_sub_01_F_Create_user_key" ""
 
   MSG_DISPLAY "Info" "1" "Checking CSR for ${_userFQDN}"
-  File_Ctrl_Exist "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/csr/${_userFQDN}.csr" "Dont_Create_file" "0" "_sub_01_F_Create_user_csr" ""
+  File_Ctrl_Exist "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/csr/${_userFQDN}.csr" "Dont_Create_file" "0" "_sub_01_F_Create_user_csr" ""
 
   MSG_DISPLAY "Info" "1" "Checking certificate for ${_userFQDN}"
-  File_Ctrl_Exist "${ROOT_CA_INTERMEDIATE_dir}/${_IntermediagSign}/certs/${_IntermediagSign}.crt" "Dont_Create_file" "0" "_sub_01_F_Create_user_crt" ""
+  File_Ctrl_Exist "${BDir_Data_Security_pki_deleg_ac}/${_IntermediagSign}/certs/${_IntermediagSign}.crt" "Dont_Create_file" "0" "_sub_01_F_Create_user_crt" ""
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -63,11 +63,11 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-  Directory_CRT "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts"
-  Directory_CRT "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}"
-  Directory_CRT "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/certs"
-  Directory_CRT "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/private"
-  Directory_CRT "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/csr"
+  Directory_CRT "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts"
+  Directory_CRT "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}"
+  Directory_CRT "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/certs"
+  Directory_CRT "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/private"
+  Directory_CRT "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/csr"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -111,9 +111,9 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
     if [ "${_Authority}" = "vmintra.plume.spa.indus.cs-novidys.tech" ]; then
-      openssl genrsa -aes256 -out "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key" -passout file:"${BASE_CA_DIR}/config/passphrase.txt" 4096
+      openssl genrsa -aes256 -out "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key" -passout file:"${BDir_Data_Security_pki_configuration}/passphrase.txt" 4096
     else
-      openssl genrsa -aes256 -out "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key" -passout file:"${BASE_CA_DIR}/config/passphrase.txt" 8192
+      openssl genrsa -aes256 -out "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key" -passout file:"${BDir_Data_Security_pki_configuration}/passphrase.txt" 8192
     fi
     Global_Exec_stat="${?}"
 
@@ -158,7 +158,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-    _cmd="UserSAN=${_UserSAN} ExtKeyUsage=${_ExtKeyUsage} KeyUsage=${_KeyUsage} CommonName=${_userFQDN} openssl req -new -config ${BASE_CA_CONFIG_DIR}/users/${_Authority}.conf -out ${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/csr/${_userFQDN}.csr -passin file:${BASE_CA_DIR}/config/passphrase.txt -key ${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key"
+    _cmd="UserSAN=${_UserSAN} ExtKeyUsage=${_ExtKeyUsage} KeyUsage=${_KeyUsage} CommonName=${_userFQDN} openssl req -new -config ${BDir_Data_Security_pki_configuration}/users/${_Authority}.conf -out ${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/csr/${_userFQDN}.csr -passin file:${BDir_Data_Security_pki_configuration}/passphrase.txt -key ${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key"
     eval "${_cmd}"
     Global_Exec_stat="${?}"
 
@@ -204,7 +204,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-    _cmd="UserSAN=${_UserSAN} ExtKeyUsage=${_ExtKeyUsage} KeyUsage=${_KeyUsage} CommonName=${_userFQDN} openssl ca -config ${BASE_CA_CONFIG_DIR}/users/${_Authority}.conf -in ${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/csr/${_userFQDN}.csr -passin file:${BASE_CA_DIR}/config/passphrase.txt -out ${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/certs/${_userFQDN}.crt -extensions user_ext -batch"
+    _cmd="UserSAN=${_UserSAN} ExtKeyUsage=${_ExtKeyUsage} KeyUsage=${_KeyUsage} CommonName=${_userFQDN} openssl ca -config ${BDir_Data_Security_pki_configuration}/users/${_Authority}.conf -in ${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/csr/${_userFQDN}.csr -passin file:${BDir_Data_Security_pki_configuration}/passphrase.txt -out ${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/certs/${_userFQDN}.crt -extensions user_ext -batch"
     eval "${_cmd}"
     Global_Exec_stat="${?}"
 
@@ -227,7 +227,7 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-  openssl pkcs12 -export -in "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/certs/${_userFQDN}.crt" -inkey "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key" -out "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.p12" -passin file:"${BASE_CA_DIR}/config/passphrase.txt" -passout file:"${BASE_CA_DIR}/config/password.txt"
+  openssl pkcs12 -export -in "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/certs/${_userFQDN}.crt" -inkey "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.key" -out "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/childcerts/${_userFQDN}/private/${_userFQDN}.p12" -passin file:"${BDir_Data_Security_pki_configuration}/passphrase.txt" -passout file:"${BDir_Data_Security_pki_configuration}/password.txt"
   Global_Exec_stat="${?}"
 
 ############### Stack_TRACE_BUILDER ################

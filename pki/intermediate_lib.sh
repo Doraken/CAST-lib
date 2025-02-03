@@ -23,7 +23,7 @@ MSG_DISPLAY "debug" "0" "Current function path: [ ${Function_PATH} ] | Function 
     local CommonName="${1%%.*}"
     local configs="${1#*.}"
     
-    local config_file="${BASE_CA_CONFIG_DIR}/intermediates/${CommonName}.conf"
+    local config_file="${BDir_Data_Security_pki_configuration}/intermediates/${CommonName}.conf"
     printf "# Simple Signing CA\n" > "${config_file}"
     printf "# This configuration file defines the Intermediate CA settings.\n\n" >> "${config_file}"
 

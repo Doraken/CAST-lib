@@ -27,13 +27,13 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function
     _sub_01_G_Create_server_cert
 
     MSG_DISPLAY "Info" "1" "Checking key for ${_serverFQDN}" 
-    File_Ctrl_Exist "${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.key" "Dont_Create_file" "0"  "_sub_01_F_Create_server_key"  ""
+    File_Ctrl_Exist "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.key" "Dont_Create_file" "0"  "_sub_01_F_Create_server_key"  ""
 
     MSG_DISPLAY "Info" "1" "Checking CSR for ${_serverFQDN}"
-    File_Ctrl_Exist "${ROOT_SERVER_CERT}/${_serverFQDN}/csr/${_serverFQDN}.csr" "Dont_Create_file" "0"  "_sub_01_F_Create_server_csr"  ""
+    File_Ctrl_Exist "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/csr/${_serverFQDN}.csr" "Dont_Create_file" "0"  "_sub_01_F_Create_server_csr"  ""
 
     MSG_DISPLAY "Info" "1" "Checking certificate for ${_Authority}"  
-    File_Ctrl_Exist "${ROOT_CA_INTERMEDIATE_dir}/${_Authority}/certs/${_Authority}.crt" "Dont_Create_file" "0"  "_sub_01_F_Create_server_crt"  ""
+    File_Ctrl_Exist "${BDir_Data_Security_pki_deleg_ac}/${_Authority}/certs/${_Authority}.crt" "Dont_Create_file" "0"  "_sub_01_F_Create_server_crt"  ""
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -54,10 +54,10 @@ local Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-    Directory_CRT "${ROOT_SERVER_CERT}/${_serverFQDN}"
-    Directory_CRT "${ROOT_SERVER_CERT}/${_serverFQDN}/certs"
-    Directory_CRT "${ROOT_SERVER_CERT}/${_serverFQDN}/private"
-    Directory_CRT "${ROOT_SERVER_CERT}/${_serverFQDN}/csr"
+    Directory_CRT "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}"
+    Directory_CRT "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/certs"
+    Directory_CRT "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private"
+    Directory_CRT "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/csr"
 
 ############### Stack_TRACE_BUILDER ################
 Function_PATH="$( dirname ${Function_PATH} )"
@@ -99,8 +99,8 @@ local Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-    echo "openssl genrsa -aes256 -out ${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.key -passout file:${BASE_CA_DIR}/config/passphrase.txt 8192" >> ${Base_Log_File}
-    openssl genrsa -aes256 -out "${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.key" -passout file:"${BASE_CA_DIR}/config/passphrase.txt" 8192
+    echo "openssl genrsa -aes256 -out ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.key -passout file:${BDir_Data_Security_pki_configuration}/passphrase.txt 8192" >> ${Base_Log_File}
+    openssl genrsa -aes256 -out "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.key" -passout file:"${BDir_Data_Security_pki_configuration}/passphrase.txt" 8192
     Global_Exec_stat="${?}"
 
 ############### Stack_TRACE_BUILDER ################
@@ -143,8 +143,8 @@ local Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-    echo "openssl req -new -config ${BASE_CA_CONFIG_DIR}/servers/${_serverFQDN}.conf -out ${ROOT_SERVER_CERT}/${_serverFQDN}/csr/${_serverFQDN}.csr -passin file:${BASE_CA_DIR}/config/passphrase.txt -key ${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.key" >> ${Base_Log_File}
-    openssl req -new -config "${BASE_CA_CONFIG_DIR}/servers/${_serverFQDN}.conf" -out "${ROOT_SERVER_CERT}/${_serverFQDN}/csr/${_serverFQDN}.csr" -passin file:"${BASE_CA_DIR}/config/passphrase.txt" -key "${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.key"
+    echo "openssl req -new -config ${BDir_Data_Security_pki_configuration}/servers/${_serverFQDN}.conf -out ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/csr/${_serverFQDN}.csr -passin file:${BDir_Data_Security_pki_configuration}/passphrase.txt -key ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.key" >> ${Base_Log_File}
+    openssl req -new -config "${BDir_Data_Security_pki_configuration}/servers/${_serverFQDN}.conf" -out "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/csr/${_serverFQDN}.csr" -passin file:"${BDir_Data_Security_pki_configuration}/passphrase.txt" -key "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.key"
     Global_Exec_stat="${?}"
 
 ############### Stack_TRACE_BUILDER ################
@@ -188,8 +188,8 @@ local Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-    echo "openssl ca -config ${BASE_CA_CONFIG_DIR}/intermediates/${_Authority}.conf -in ${ROOT_SERVER_CERT}/${_serverFQDN}/csr/${_serverFQDN}.csr -passin file:${BASE_CA_DIR}/config/passphrase.txt -out ${ROOT_SERVER_CERT}/${_serverFQDN}/certs/${_serverFQDN}.crt -extensions server_ext -batch" >> ${Base_Log_File}
-    openssl ca -config "${BASE_CA_CONFIG_DIR}/intermediates/${_Authority}.conf" -in "${ROOT_SERVER_CERT}/${_serverFQDN}/csr/${_serverFQDN}.csr" -passin file:"${BASE_CA_DIR}/config/passphrase.txt" -out "${ROOT_SERVER_CERT}/${_serverFQDN}/certs/${_serverFQDN}.crt" -extensions server_ext -batch
+    echo "openssl ca -config ${BDir_Data_Security_pki_configuration}/intermediates/${_Authority}.conf -in ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/csr/${_serverFQDN}.csr -passin file:${BDir_Data_Security_pki_configuration}/passphrase.txt -out ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/certs/${_serverFQDN}.crt -extensions server_ext -batch" >> ${Base_Log_File}
+    openssl ca -config "${BDir_Data_Security_pki_configuration}/intermediates/${_Authority}.conf" -in "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/csr/${_serverFQDN}.csr" -passin file:"${BDir_Data_Security_pki_configuration}/passphrase.txt" -out "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/certs/${_serverFQDN}.crt" -extensions server_ext -batch
     Global_Exec_stat="${?}"
 
 ############### Stack_TRACE_BUILDER ################
@@ -211,8 +211,8 @@ local Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ] | function Name [ ${Function_Name} ]"
 
-    echo "openssl pkcs12 -export -in ${ROOT_SERVER_CERT}/${_serverFQDN}/certs/${_serverFQDN}.crt -inkey ${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.key -out ${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.p12 -passin file:${BASE_CA_DIR}/config/passphrase.txt -passout file:${BASE_CA_DIR}/config/password.txt" >> ${Base_Log_File}
-    openssl pkcs12 -export -in "${ROOT_SERVER_CERT}/${_serverFQDN}/certs/${_serverFQDN}.crt" -inkey "${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.key" -out "${ROOT_SERVER_CERT}/${_serverFQDN}/private/${_serverFQDN}.p12" -passin file:"${BASE_CA_DIR}/config/passphrase.txt" -passout file:"${BASE_CA_DIR}/config/password.txt"
+    echo "openssl pkcs12 -export -in ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/certs/${_serverFQDN}.crt -inkey ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.key -out ${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.p12 -passin file:${BDir_Data_Security_pki_configuration}/passphrase.txt -passout file:${BDir_Data_Security_pki_configuration}/password.txt" >> ${Base_Log_File}
+    openssl pkcs12 -export -in "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/certs/${_serverFQDN}.crt" -inkey "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.key" -out "${BDir_Data_Security_pki_cert_server}/${_serverFQDN}/private/${_serverFQDN}.p12" -passin file:"${BDir_Data_Security_pki_configuration}/passphrase.txt" -passout file:"${BDir_Data_Security_pki_configuration}/password.txt"
     Global_Exec_stat="${?}"
 
 ############### Stack_TRACE_BUILDER ################

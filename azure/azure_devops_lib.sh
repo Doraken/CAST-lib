@@ -106,17 +106,11 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
     local repo_list
 
     
-    
-
     # Set the organization for Azure DevOps
     az devops configure --defaults organization=https://${GIT_BASE_DNS}/${GIT_BASE_ORGA_NAME}
 
-
     # Get a list of all projects in the organization
     project_list=$(az devops project list --query "value[].name" -o tsv)
-
-
-
 
     MSG_DISPLAY "info" "0" "List of projects in the Azure DevOps subscription:"
     # Loop through each project and get the list of repositories
@@ -160,7 +154,7 @@ MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | functio
     echo "Sélectionnez le type d'objet Azure: "
     select obj in "${!AZURE_OBJECTS[@]}"
      do
-        if [[ -n "$obj" ]]
+        if [[ -n "${obj}" ]]
          then
             BIGRAMME=${AZURE_OBJECTS[$obj]}
             CATEGORIE=${CATEGORIES[$obj]}
@@ -174,48 +168,8 @@ Function_PATH="$( dirname ${Function_PATH} )"
 ####################################################
 }
 
-function get_index()
-{
-############ STACK_TRACE_BUILDER #####################
-Function_Name="${FUNCNAME[0]}"
-Function_PATH="${Function_PATH}/${Function_Name}"
-######################################################
-MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
-    echo "Select the index (default: 01): "
-    select idx in {01..10}
-     do
-        if [[ -n "$idx" ]]
-         then
-            INDEX=$idx
-            break
-        else
-            echo "Invalid selection. Please try again."
-        fi
-    done
-    INDEX=${INDEX:-01}
-############### Stack_TRACE_BUILDER ################
-Function_PATH="$( dirname ${Function_PATH} )"
-####################################################
-}
 
 
-# Fonction pour poser des questions et obtenir les entrées utilisateur
-function ask_questions()
- {
-############ STACK_TRACE_BUILDER #####################
-Function_Name="${FUNCNAME[0]}"
-Function_PATH="${Function_PATH}/${Function_Name}"
-######################################################
-MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
-    get_app_code
-    gen_env_code
-    get_localisation
-    get_object_type
-    get_index
-############### Stack_TRACE_BUILDER ################
-Function_PATH="$( dirname ${Function_PATH} )"
-####################################################
-}
 
 LibState="OK"
 

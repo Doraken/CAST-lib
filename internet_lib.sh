@@ -8,7 +8,6 @@
 ############################
 
 
-
 function Internet_Http_Get
 {
 #|# Base_Param_URL          : Use this var to set the base URL tu use for WGET
@@ -22,13 +21,10 @@ Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
 MSG_DISPLAY "debug" "0" "current function path : [ ${Function_PATH} ]  | function Name [ ${Function_Name} ]  "
 
-
-
 local Base_Param_URL="${1}"
 local Base_Param_File_To_Get="${2}"
 local PWD_Recept_PKG="${3}"
 local Base_Url_Parameter="${4}"
-
 
 MSG_DISPLAY "debug" "0" "Recept Directory is set to  : [ ${PWD_Recept_PKG} ] "
 Set_new_directory "${PWD_Recept_PKG}"

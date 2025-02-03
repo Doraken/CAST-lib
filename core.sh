@@ -23,7 +23,7 @@ function show_spacer ()
 }
 
 
-# liste of all files in the repertory call in ../conf/conf.cnf
+# liste of all files in the repertory call in ../config/conf.cnf
 function Do_source_all_libs ()
 {
 ############ STACK_TRACE_BUILDER #####################
@@ -526,14 +526,14 @@ Function_PATH="$( dirname ${Function_PATH} )"
 }
 
 
-# get "tag" of repertories in ../conf/conf.cnf and sort
+# get "tag" of repertories in ../config/conf.cnf and sort
 function init_directory ()
 {
 ############ STACK_TRACE_BUILDER #####################
 Function_Name="${FUNCNAME[0]}"
 Function_PATH="${Function_PATH}/${Function_Name}"
 ######################################################
-for directories in $(cat ../conf/config.cnf | grep "###_ " | awk -F\= '{ print "${" $1 "}"  }' | sed -e 's/\ //g' | sort)   
+for directories in $(cat ../config/config.cnf | grep "###_ " | awk -F\= '{ print "${" $1 "}"  }' | sed -e 's/\ //g' | sort)   
   do 
     eval Create_Directory=${directories}
     Set_new_directory "${Create_Directory}" 
